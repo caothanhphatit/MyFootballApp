@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Col, Container, ListGroup, Nav, Navbar, NavDropdown, Row, Tab, Table, Spinner } from 'react-bootstrap';
+import { Col, Container, ListGroup, Nav, Navbar, NavDropdown, Row, Tab, Table, Button } from 'react-bootstrap';
 import BootstrapTable from 'react-bootstrap-table-next';
 import ExpandSessionRow from './ExpandSessionRow'
 import Loading from './Loading'
@@ -27,7 +27,8 @@ function App() {
 
   const columns = [{
     dataField: 'league_id',
-    text: 'ID'
+    text: 'ID',
+
   }, {
     dataField: 'league_name',
     text: 'Name'
@@ -37,7 +38,22 @@ function App() {
   }, {
     dataField: 'league_session',
     text: 'Session'
-  }];
+  },
+  {
+    dataField: 'league_session',
+    text: 'Session'
+  },
+  {
+    dataField: 'action',
+    text: 'Action',
+    formatter: (value, row) => (
+      <Button type="primary" size="sm" onClick={(e) => {
+        e.stopPropagation()
+        alert(row.league_id)
+      }}>Click</Button>
+    )
+  },
+  ];
   const expandRow = {
     renderer: row => <ExpandSessionRow row={row} />
   };
